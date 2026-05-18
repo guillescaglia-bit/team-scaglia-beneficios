@@ -1173,16 +1173,22 @@
 
                 html += `
                     <div class="cupone-card" style="border-left-color: ${prestador.color}; position: relative; overflow: hidden; padding: 0;">
-                        <!-- Banner superior: Logo fijo izquierda + Imagen flexible derecha -->
+                        <!-- Banner superior: Logo fijo izquierda + Imagen flexible + Descuento fijo derecha -->
                         <div style="background: ${prestador.banner ? `url('${prestador.banner}') right/cover` : prestador.color}; display: flex; align-items: stretch; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; min-height: 120px;">
                             
                             <!-- Logo FIJO a la izquierda (ancho fijo) -->
                             <div style="flex-shrink: 0; width: 100px; display: flex; align-items: center; justify-content: center; padding: 16px; background: ${prestador.color};">
-                                <span style="font-size: 64px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">${prestador.icono}</span>
+                                <!-- Espacio reservado para logo -->
                             </div>
                             
                             <!-- Banner FLEXIBLE (imagen se expande/contrae a la derecha) -->
                             <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end; padding: 0; position: relative;"></div>
+
+                            <!-- Descuento FIJO a la derecha (no se recorta) -->
+                            <div style="flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 16px 24px; background: rgba(0,0,0,0.2);">
+                                <span style="color: white; font-weight: bold; font-size: 36px; line-height: 1;">${prestador.descuento ? prestador.descuento : '?'}</span>
+                                <span style="color: rgba(255,255,255,0.95); font-size: 11px; font-weight: 500; margin-top: 2px;">desc.</span>
+                            </div>
                         </div>
 
                         <!-- Contenido de la card (nombre, descripción, cupón, etc) -->
@@ -1192,8 +1198,6 @@
                                 <div style="color: var(--primary); font-weight: 700; font-size: 18px; margin-bottom: 4px;">${prestador.nombre}</div>
                                 <div style="color: var(--gray-dark); font-size: 13px; line-height: 1.4;">${prestador.descripcion}</div>
                             </div>
-
-                            <div style="position: absolute; top: 140px; right: -20px; font-size: 100px; opacity: 0.05; pointer-events: none;">${prestador.icono}</div>
 
                             ${cupone ? `
                                 <div class="cupone-codigo">${cupone.codigo}</div>
