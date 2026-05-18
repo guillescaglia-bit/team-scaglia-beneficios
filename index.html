@@ -867,7 +867,7 @@
             prestadores: [
                 { id: '1', nombre: 'Helixperience Miami', email: 'info@helixperience.com', descuento: 20, descripcion: 'Vuelos +20% + 5 min extra de vuelo', url: 'https://helixperience.com', icono: '✈️', color: '#1e90ff', banner: null, tyc: 'El cupón es válido por 30 días desde su creación. No es acumulable con otras promociones. Requiere reserva directa en nuestro sitio. Consultar disponibilidad según destino.', activo: true },
                 { id: '2', nombre: 'ibath', email: 'info@ibath.com', descuento: 15, descripcion: 'Inodoros inteligentes 15% precio de lista', url: 'https://ibath.com.ar', icono: '🚿', color: '#00bcd4', banner: null, tyc: 'Descuento válido en toda la línea de productos. No aplica a ofertas vigentes. Válido por 30 días. Presentar cupón al momento de compra.', activo: true },
-                { id: '3', nombre: 'Wilson Tobal', email: 'info@wilsontobal.com', descuento: 15, descripcion: 'Interiorismo 15% precio de lista', url: 'https://wilsontobal.com', icono: '🏠', color: '#8b7355', banner: 'image/banner-wilson-tobal.png', tyc: 'Aplica a proyectos de interiorismo. Requiere presupuesto previo. Válido 30 días. No acumulable con otras promociones. Consultar disponibilidad de tiempos.', activo: true },
+                { id: '3', nombre: 'Wilson Tobal', email: 'info@wilsontobal.com', descuento: 15, descripcion: 'Interiorismo 15% precio de lista', url: 'https://wilsontobal.com', icono: '🏠', color: '#8b7355', banner: '/image/banner-wilson-tobal.png', tyc: 'Aplica a proyectos de interiorismo. Requiere presupuesto previo. Válido 30 días. No acumulable con otras promociones. Consultar disponibilidad de tiempos.', activo: true },
                 { id: '4', nombre: 'Anna Rosatti', email: 'info@annarosatti.com', descuento: null, descripcion: 'Ropa de diseño (descuento a confirmar)', url: 'https://annarosatti.com', icono: '👗', color: '#ff69b4', banner: null, tyc: 'Descuento a confirmar con la marca. Válido en colecciones seleccionadas. Consultar condiciones específicas con el equipo de Anna Rosatti.', activo: true },
                 { id: '5', nombre: 'Almacén 1249', email: 'info@almacen1249.com', descuento: 10, descripcion: 'Picadas premium 10%', url: 'https://almacen1249.com.ar', icono: '🍽️', color: '#d4af37', banner: null, tyc: 'Descuento aplicable a picadas premium. Pedido mínimo requerido. Válido 30 días. Consultar disponibilidad y formas de entrega.', activo: true },
                 { id: '6', nombre: 'Mul nordelta', email: 'info@mulnordelta.com', descuento: 15, descripcion: 'Spa capilar 15% descuento', url: 'https://mulnordelta.com.ar', icono: '💇', color: '#ff6b9d', banner: null, tyc: 'Descuento en tratamientos de spa capilar. Requiere turno previo. Válido 30 días. No acumulable. Consultar promociones vigentes.', activo: true },
@@ -1173,35 +1173,26 @@
 
                 html += `
                     <div class="cupone-card" style="border-left-color: ${prestador.color}; position: relative; overflow: hidden; padding: 0;">
-                        <!-- Banner superior: Logo fijo + Diseño flexible -->
-                        <div style="background: ${prestador.banner ? `url('${prestador.banner}') center/cover` : prestador.color}; display: flex; align-items: stretch; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; min-height: 120px;">
+                        <!-- Banner superior: Logo fijo izquierda + Imagen flexible derecha -->
+                        <div style="background: ${prestador.banner ? `url('${prestador.banner}') right/cover` : prestador.color}; display: flex; align-items: stretch; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; min-height: 120px;">
                             
-                            <!-- Logo FIJO a la izquierda -->
-                            <div style="flex-shrink: 0; width: 100px; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(0,0,0,0.15);">
+                            <!-- Logo FIJO a la izquierda (ancho fijo) -->
+                            <div style="flex-shrink: 0; width: 100px; display: flex; align-items: center; justify-content: center; padding: 16px; background: ${prestador.color};">
                                 <span style="font-size: 64px; line-height: 1; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">${prestador.icono}</span>
                             </div>
                             
-                            <!-- Diseño FLEXIBLE (se expande/contrae) -->
-                            <div style="flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 24px 20px; gap: 16px; position: relative; background: ${prestador.banner ? 'rgba(0,0,0,0.3)' : 'transparent'};">
-                                <!-- Fondo decorativo que se expande -->
-                                <div style="position: absolute; right: -30px; top: -20px; font-size: 120px; opacity: ${prestador.banner ? '0.05' : '0.08'}; pointer-events: none;">${prestador.icono}</div>
-                                
-                                <!-- Info del prestador -->
-                                <div style="position: relative; z-index: 1; min-width: 0; flex: 1;">
-                                    <div style="color: white; font-weight: 700; font-size: 18px; margin-bottom: 4px; word-break: break-word; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">${prestador.nombre}</div>
-                                    <div style="color: rgba(255,255,255,0.9); font-size: 12px; line-height: 1.4; text-shadow: 0 1px 2px rgba(0,0,0,0.2);">${prestador.descripcion}</div>
-                                </div>
-                                
-                                <!-- Descuento a la derecha -->
-                                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1;">
-                                    <span style="color: white; font-weight: bold; font-size: 36px; line-height: 1; text-shadow: 0 2px 4px rgba(0,0,0,0.3);">${prestador.descuento ? prestador.descuento : '?'}</span>
-                                    <span style="color: rgba(255,255,255,0.95); font-size: 11px; font-weight: 500; margin-top: 2px; text-shadow: 0 1px 2px rgba(0,0,0,0.3);">desc.</span>
-                                </div>
-                            </div>
+                            <!-- Banner FLEXIBLE (imagen se expande/contrae a la derecha) -->
+                            <div style="flex: 1; display: flex; align-items: center; justify-content: flex-end; padding: 0; position: relative;"></div>
                         </div>
 
-                        <!-- Contenido de la card -->
+                        <!-- Contenido de la card (nombre, descripción, cupón, etc) -->
                         <div style="padding: 20px;">
+                            <!-- Nombre y Descripción del prestador -->
+                            <div style="margin-bottom: 20px;">
+                                <div style="color: var(--primary); font-weight: 700; font-size: 18px; margin-bottom: 4px;">${prestador.nombre}</div>
+                                <div style="color: var(--gray-dark); font-size: 13px; line-height: 1.4;">${prestador.descripcion}</div>
+                            </div>
+
                             <div style="position: absolute; top: 140px; right: -20px; font-size: 100px; opacity: 0.05; pointer-events: none;">${prestador.icono}</div>
 
                             ${cupone ? `
