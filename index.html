@@ -1,0 +1,1852 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficios Team Scaglia</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Variables de color */
+        :root {
+            --primary: #324a70;
+            --primary-light: #4a6fa5;
+            --white: #ffffff;
+            --gray-light: #f5f5f5;
+            --gray-dark: #666;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+
+        /* Layout principal */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: var(--primary);
+            color: var(--white);
+            padding: 20px 0;
+            border-bottom: 4px solid #2d3e5f;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .user-name {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .btn-logout {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--white);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .btn-logout:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        /* Vistas */
+        .vista {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+
+        .vista.activa {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Login */
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+        }
+
+        .login-box {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .login-box h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .login-box p {
+            color: var(--gray-dark);
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e5e5e5;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(50, 74, 112, 0.1);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(50, 74, 112, 0.3);
+        }
+
+        .btn-secondary {
+            background: #e5e5e5;
+            color: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: #d0d0d0;
+        }
+
+        .btn-sm {
+            padding: 8px 16px;
+            font-size: 14px;
+            width: auto;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+
+        .btn-success {
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .btn-success:hover {
+            background: #16a34a;
+        }
+
+        .toggle-form {
+            text-align: center;
+            margin-top: 20px;
+            color: var(--gray-dark);
+            font-size: 14px;
+        }
+
+        .toggle-form button {
+            background: none;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            text-decoration: underline;
+            font-weight: 600;
+        }
+
+        /* Dashboard */
+        .dashboard-main {
+            padding: 30px 0;
+        }
+
+        .dashboard-header {
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h2 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .dashboard-header p {
+            color: var(--gray-dark);
+            font-size: 14px;
+        }
+
+        /* Sección Admin */
+        .admin-section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .admin-section h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .admin-section h3::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th {
+            background: #f9f9f9;
+            color: var(--primary);
+            padding: 12px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        tr:hover {
+            background: #f9f9f9;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-activo {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .status-inactivo {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .btn-icon {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+
+        /* Grid de cupones */
+        .cupones-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .cupone-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border-left: 4px solid var(--primary);
+        }
+
+        .cupone-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-4px);
+        }
+
+        .cupone-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .prestador-nombre {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .descuento-badge {
+            background: var(--primary);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .prestador-desc {
+            color: var(--gray-dark);
+            font-size: 13px;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .cupone-codigo {
+            background: #f9f9f9;
+            border: 2px dashed var(--primary);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: 'Courier New', monospace;
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--primary);
+            word-break: break-all;
+        }
+
+        .cupone-fecha {
+            font-size: 12px;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+        }
+
+        .cupone-estado {
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+
+        .estado-activo {
+            background: #dcfce7;
+            color: #166534;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .estado-usado {
+            background: #e5e7eb;
+            color: #4b5563;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .cupone-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.activo {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .modal-header h3 {
+            color: var(--primary);
+            font-size: 20px;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #999;
+        }
+
+        .btn-close:hover {
+            color: #333;
+        }
+
+        /* Alerts */
+        .alert {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-10px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .alert.mostrar {
+            display: block;
+        }
+
+        .alert-success {
+            background: #dcfce7;
+            color: #166534;
+            border-left: 4px solid var(--success);
+        }
+
+        .alert-error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-left: 4px solid var(--danger);
+        }
+
+        .alert-info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-left: 4px solid #3b82f6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .login-box {
+                padding: 25px;
+            }
+
+            .cupones-grid {
+                grid-template-columns: 1fr;
+            }
+
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .user-info {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .dashboard-header h2 {
+                font-size: 20px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            td, th {
+                padding: 8px;
+            }
+        }
+
+        /* Estilos de pestañas */
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #e5e5e5;
+        }
+
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 12px 20px;
+            cursor: pointer;
+            color: var(--gray-dark);
+            font-weight: 500;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+            font-size: 14px;
+        }
+
+        .tab-btn.activo {
+            color: var(--primary);
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-btn:hover {
+            color: var(--primary);
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--gray-dark);
+        }
+
+        .empty-state p {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER (oculto en login) -->
+    <header id="header" style="display: none;">
+        <div class="container">
+            <div class="logo">💰 Team Scaglia Beneficios</div>
+            <div class="user-info">
+                <div>
+                    <div class="user-name" id="userNameDisplay"></div>
+                    <small style="opacity: 0.7;" id="userRoleDisplay"></small>
+                </div>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                    <button class="btn-logout" onclick="logout()">Salir</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- VISTAS -->
+    <div id="appContent">
+        <!-- Vista: Login -->
+        <div id="vistaLogin" class="vista activa">
+            <div class="login-container">
+                <div class="login-box">
+                    <h1>Beneficios</h1>
+                    <p>Team Scaglia</p>
+
+                    <div id="formLoginContainer">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="loginEmail" placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" id="loginPassword" placeholder="••••••••">
+                        </div>
+                        <button class="btn btn-primary" onclick="handleLogin()">Ingresar</button>
+                        <div class="toggle-form">
+                            ¿No tenés cuenta? <button onclick="toggleForm()">Registrate</button>
+                        </div>
+
+                        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;">
+
+                        <div style="text-align: center;">
+                            <p style="font-size: 12px; color: var(--gray-dark); margin-bottom: 10px;">¿Sos prestador?</p>
+                            <button onclick="showVista('vistaValidarCupon'); document.getElementById('header').style.display = 'none';" style="background: none; border: none; color: var(--primary); cursor: pointer; text-decoration: underline; font-weight: 600;">Validar cupones aquí</button>
+                        </div>
+                    </div>
+
+                    <div id="formRegistroContainer" style="display: none;">
+                        <div class="form-group">
+                            <label>Nombre completo</label>
+                            <input type="text" id="regNombre" placeholder="Juan García">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" id="regEmail" placeholder="tu@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="tel" id="regTelefono" placeholder="+54 9 11 1234-5678">
+                        </div>
+                        <div class="form-group">
+                            <label>Seleccioná tu agente</label>
+                            <select id="regAgente">
+                                <option value="">-- Elige un agente --</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Contraseña</label>
+                            <input type="password" id="regPassword" placeholder="••••••••">
+                        </div>
+                        <button class="btn btn-primary" onclick="handleRegistro()">Crear cuenta</button>
+                        <div class="toggle-form">
+                            ¿Ya tenés cuenta? <button onclick="toggleForm()">Ingresá</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista: Dashboard Cliente -->
+        <div id="vistaDashboardCliente" class="vista">
+            <div class="dashboard-main">
+                <div class="container">
+                    <div id="alertContainer"></div>
+
+                    <div class="dashboard-header">
+                        <h2>Tus Beneficios</h2>
+                        <p>Creá cupones y disfrutá descuentos exclusivos del Team Scaglia</p>
+                    </div>
+
+                    <div class="cupones-grid" id="cuponesGrid">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista: Dashboard Agente -->
+        <div id="vistaDashboardAgente" class="vista">
+            <div class="dashboard-main">
+                <div class="container">
+                    <div id="agenteAlertContainer"></div>
+
+                    <div class="dashboard-header">
+                        <h2>Dashboard Agente</h2>
+                        <p>Seguimiento de cupones de tus clientes</p>
+                    </div>
+
+                    <div id="notificacionesAgente" style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista: Validar Cupón (para prestadores) -->
+        <div id="vistaValidarCupon" class="vista">
+            <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);">
+                <div style="background: var(--white); border-radius: 12px; padding: 40px; box-shadow: 0 20px 60px rgba(0,0,0,0.3); max-width: 500px; width: 100%; margin: 20px;">
+                    <h2 style="color: var(--primary); margin-bottom: 10px; text-align: center;">Validar Cupón</h2>
+                    <p style="color: var(--gray-dark); text-align: center; margin-bottom: 30px; font-size: 14px;">Ingresá el código para validar el descuento</p>
+
+                    <div id="validadorAlertContainer"></div>
+
+                    <div class="form-group">
+                        <label>Código del cupón</label>
+                        <input type="text" id="inputCodigoValidador" placeholder="Ej: SCGL-NIKE-ABC123" style="text-transform: uppercase; font-size: 18px; text-align: center; letter-spacing: 2px;">
+                    </div>
+
+                    <button class="btn btn-primary" onclick="validarCodigoPrestador()" style="margin-bottom: 15px;">Validar Código</button>
+
+                    <div id="resultadoValidacion"></div>
+
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;">
+
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-secondary" onclick="limpiarValidador()" style="flex: 1;">Limpiar</button>
+                        <button class="btn btn-secondary" onclick="volverDelValidador()" style="flex: 1;">Volver</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Vista: Admin -->
+        <div id="vistaAdmin" class="vista">
+            <div class="dashboard-main">
+                <div class="container">
+                    <div id="adminAlertContainer"></div>
+
+                    <div class="dashboard-header">
+                        <h2>Panel Administrativo</h2>
+                        <p>Gestiona agentes y prestadores</p>
+                    </div>
+
+                    <div class="tabs">
+                        <button class="tab-btn activo" onclick="switchAdminTab('clientes')">Validar Clientes</button>
+                        <button class="tab-btn" onclick="switchAdminTab('agentes')">Agentes</button>
+                        <button class="tab-btn" onclick="switchAdminTab('prestadores')">Prestadores</button>
+                    </div>
+
+                    <!-- Tab: Validar Clientes -->
+                    <div id="adminClientesTab" class="admin-section">
+                        <h3>Clientes Pendientes de Validación</h3>
+                        <div style="margin-top: 20px; overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Teléfono</th>
+                                        <th>Agente</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="clientesTableBody">
+                                    <!-- Se llena dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Agentes -->
+                    <div id="adminAgentesTab" class="admin-section" style="display: none;">
+                        <h3>Gestionar Agentes</h3>
+                        <button class="btn btn-primary btn-sm" onclick="openModalAgregar('agente')">+ Agregar Agente</button>
+                        <div style="margin-top: 20px; overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="agentesTableBody">
+                                    <!-- Se llena dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Tab: Prestadores -->
+                    <div id="adminPrestadoresTab" class="admin-section" style="display: none;">
+                        <h3>Gestionar Prestadores</h3>
+                        <button class="btn btn-primary btn-sm" onclick="openModalAgregar('prestador')">+ Agregar Prestador</button>
+                        <div style="margin-top: 20px; overflow-x: auto;">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Email</th>
+                                        <th>Descuento</th>
+                                        <th>Descripción</th>
+                                        <th>Estado</th>
+                                        <th>Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="prestadoresTableBody">
+                                    <!-- Se llena dinámicamente -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALES -->
+    <!-- Modal: Agregar/Editar -->
+    <div id="modalAgregar" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Agregar Agente</h3>
+                <button class="btn-close" onclick="closeModal('modalAgregar')">×</button>
+            </div>
+            <div id="modalFormContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        // ==================== MOCK DATA ====================
+        let appState = {
+            usuarioActual: null, // { id, nombre, email, rol, agenteId }
+            agentes: [
+                { id: '1', nombre: 'Guillermo Scaglia', email: 'guillermo@teamscaglia.com', activo: true },
+                { id: '2', nombre: 'Giuliano Larroca', email: 'giuliano@teamscaglia.com', activo: true },
+                { id: '3', nombre: 'Luciano Pérez Mango', email: 'luciano@teamscaglia.com', activo: true },
+                { id: '4', nombre: 'Carolina Klachko', email: 'carolina@teamscaglia.com', activo: true },
+                { id: '5', nombre: 'Romina Garfunkel', email: 'romina@teamscaglia.com', activo: true },
+                { id: '6', nombre: 'Federico Susemihl', email: 'federico@teamscaglia.com', activo: true },
+                { id: '7', nombre: 'Talia Larroca', email: 'talia@teamscaglia.com', activo: true },
+                { id: '8', nombre: 'Daniela Queijada', email: 'daniela@teamscaglia.com', activo: true },
+                { id: '9', nombre: 'Irene Ruiz Díaz', email: 'irene@teamscaglia.com', activo: true },
+            ],
+            prestadores: [
+                { id: '1', nombre: 'Helixperience Miami', email: 'info@helixperience.com', descuento: 20, descripcion: 'Vuelos +20% + 5 min extra de vuelo', url: 'https://helixperience.com', icono: '✈️', color: '#1e90ff', tyc: 'El cupón es válido por 30 días desde su creación. No es acumulable con otras promociones. Requiere reserva directa en nuestro sitio. Consultar disponibilidad según destino.', activo: true },
+                { id: '2', nombre: 'ibath', email: 'info@ibath.com', descuento: 15, descripcion: 'Inodoros inteligentes 15% precio de lista', url: 'https://ibath.com.ar', icono: '🚿', color: '#00bcd4', tyc: 'Descuento válido en toda la línea de productos. No aplica a ofertas vigentes. Válido por 30 días. Presentar cupón al momento de compra.', activo: true },
+                { id: '3', nombre: 'Wilson Tobal', email: 'info@wilsontobal.com', descuento: 15, descripcion: 'Interiorismo 15% precio de lista', url: 'https://wilsontobal.com', icono: '🏠', color: '#8b7355', tyc: 'Aplica a proyectos de interiorismo. Requiere presupuesto previo. Válido 30 días. No acumulable con otras promociones. Consultar disponibilidad de tiempos.', activo: true },
+                { id: '4', nombre: 'Anna Rosatti', email: 'info@annarosatti.com', descuento: null, descripcion: 'Ropa de diseño (descuento a confirmar)', url: 'https://annarosatti.com', icono: '👗', color: '#ff69b4', tyc: 'Descuento a confirmar con la marca. Válido en colecciones seleccionadas. Consultar condiciones específicas con el equipo de Anna Rosatti.', activo: true },
+                { id: '5', nombre: 'Almacén 1249', email: 'info@almacen1249.com', descuento: 10, descripcion: 'Picadas premium 10%', url: 'https://almacen1249.com.ar', icono: '🍽️', color: '#d4af37', tyc: 'Descuento aplicable a picadas premium. Pedido mínimo requerido. Válido 30 días. Consultar disponibilidad y formas de entrega.', activo: true },
+                { id: '6', nombre: 'Mul nordelta', email: 'info@mulnordelta.com', descuento: 15, descripcion: 'Spa capilar 15% descuento', url: 'https://mulnordelta.com.ar', icono: '💇', color: '#ff6b9d', tyc: 'Descuento en tratamientos de spa capilar. Requiere turno previo. Válido 30 días. No acumulable. Consultar promociones vigentes.', activo: true },
+                { id: '7', nombre: 'Cerantola', email: 'info@cerantola.com', descuento: null, descripcion: 'Aberturas (descuento a confirmar)', url: 'https://cerantola.com.ar', icono: '🪟', color: '#6b5b4f', tyc: 'Descuento a confirmar. Aplica en línea de aberturas seleccionadas. Requiere presupuesto. Válido 30 días.', activo: true },
+            ],
+            clientes: [
+                { id: '1', nombre: 'Juan García', email: 'juan@email.com', telefono: '+54 9 11 1234567', agenteId: '1', validado: true },
+                { id: '2', nombre: 'María López', email: 'maria@email.com', telefono: '+54 9 11 2345678', agenteId: '2', validado: true },
+            ],
+            cupones: [
+                { id: '1', clienteId: '1', prestadorId: '1', agenteId: '1', codigo: 'SCGL-HELIX-ABC123', estado: 'activo', creadoEn: new Date(Date.now() - 5 * 24 * 60 * 60 * 1000), expirado: new Date(Date.now() + 25 * 24 * 60 * 60 * 1000), usadoEn: null },
+                { id: '2', clienteId: '1', prestadorId: '2', agenteId: '1', codigo: 'SCGL-IBATH-XYZ789', estado: 'activo', creadoEn: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), expirado: new Date(Date.now() + 28 * 24 * 60 * 60 * 1000), usadoEn: null },
+                { id: '3', clienteId: '1', prestadorId: '5', agenteId: '1', codigo: 'SCGL-ALMC-DEF456', estado: 'usado', creadoEn: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000), expirado: new Date(Date.now() - 15 * 24 * 60 * 60 * 1000), usadoEn: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000) },
+            ],
+        };
+
+        // ==================== FUNCIONES CORE ====================
+
+        function showVista(vistaId) {
+            document.querySelectorAll('.vista').forEach(v => v.classList.remove('activa'));
+            document.getElementById(vistaId).classList.add('activa');
+        }
+
+        function toggleForm() {
+            document.getElementById('formLoginContainer').style.display = document.getElementById('formLoginContainer').style.display === 'none' ? 'block' : 'none';
+            document.getElementById('formRegistroContainer').style.display = document.getElementById('formRegistroContainer').style.display === 'none' ? 'block' : 'none';
+        }
+
+        function handleLogin() {
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            if (!email || !password) {
+                showAlert('vistaLogin', 'Completa todos los campos', 'error');
+                return;
+            }
+
+            // Mock: Simular login (después será con Supabase)
+            if (email === 'admin@teamscaglia.com' && password === 'admin123') {
+                appState.usuarioActual = { id: 'admin', nombre: 'Admin Team Scaglia', email, rol: 'admin' };
+                showDashboardAdmin();
+            } else if (email === 'agente@teamscaglia.com' && password === 'agente123') {
+                appState.usuarioActual = { id: 'agente1', nombre: 'Guillermo Scaglia', email, rol: 'agente', agenteId: '1' };
+                showDashboardAgente();
+            } else if (email === 'cliente@teamscaglia.com' && password === 'cliente123') {
+                appState.usuarioActual = { id: 'cliente1', nombre: 'Juan García', email, rol: 'cliente', clienteId: '1' };
+                showDashboardCliente();
+            } else {
+                showAlert('vistaLogin', 'Email o contraseña incorrectos. Prueba: cliente@teamscaglia.com / cliente123', 'error');
+            }
+        }
+
+        function handleRegistro() {
+            const nombre = document.getElementById('regNombre').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const telefono = document.getElementById('regTelefono').value.trim();
+            const agenteId = document.getElementById('regAgente').value;
+            const password = document.getElementById('regPassword').value;
+
+            if (!nombre || !email || !telefono || !agenteId || !password) {
+                showAlert('vistaLogin', 'Completa todos los campos', 'error');
+                return;
+            }
+
+            // Mock: Crear cliente
+            const nuevoCliente = {
+                id: Date.now().toString(),
+                nombre,
+                email,
+                telefono,
+                agenteId,
+                validado: false // Pendiente de validación por admin
+            };
+
+            appState.clientes.push(nuevoCliente);
+            appState.usuarioActual = { id: nuevoCliente.id, nombre, email, rol: 'cliente', clienteId: nuevoCliente.id };
+
+            showAlert('vistaLogin', '¡Cuenta creada! Esperando validación...', 'success');
+            setTimeout(() => showDashboardCliente(), 1000);
+        }
+
+        function showDashboardCliente() {
+            document.getElementById('header').style.display = 'block';
+            document.getElementById('userNameDisplay').textContent = appState.usuarioActual.nombre;
+            document.getElementById('userRoleDisplay').textContent = 'Cliente';
+
+            const cliente = appState.clientes.find(c => c.id === appState.usuarioActual.clienteId);
+
+            // Limpiar inputs primero
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('regNombre').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regTelefono').value = '';
+            document.getElementById('regPassword').value = '';
+
+            if (!cliente.validado) {
+                showVistaPendienteValidacion();
+            } else {
+                // Limpiar completamente el HTML antes de renderizar
+                document.getElementById('vistaDashboardCliente').innerHTML = `
+                    <div class="dashboard-main">
+                        <div class="container">
+                            <div id="alertContainer"></div>
+                            <div class="dashboard-header">
+                                <h2>Tus Beneficios</h2>
+                                <p>Creá cupones y disfrutá descuentos exclusivos del Team Scaglia</p>
+                            </div>
+                            <div class="cupones-grid" id="cuponesGrid">
+                                <!-- Se llena dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                renderCuponesCliente();
+                showVista('vistaDashboardCliente');
+            }
+        }
+
+        function showVistaPendienteValidacion() {
+            const cliente = appState.clientes.find(c => c.id === appState.usuarioActual.clienteId);
+            const agente = appState.agentes.find(a => a.id === cliente.agenteId);
+
+            const mainDiv = document.getElementById('vistaDashboardCliente');
+            mainDiv.innerHTML = `
+                <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px;">
+                    <div style="max-width: 500px; width: 100%; background: white; border-radius: 12px; padding: 40px; text-align: center; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                        <div style="font-size: 48px; margin-bottom: 20px;">⏳</div>
+                        <h2 style="color: var(--primary); margin-bottom: 15px;">Pendiente de validación</h2>
+                        <p style="color: var(--gray-dark); margin-bottom: 10px; font-size: 16px;">
+                            Tu cuenta está siendo validada por el equipo de Team Scaglia.
+                        </p>
+                        <p style="color: var(--gray-dark); margin-bottom: 30px; font-size: 14px;">
+                            Tu agente es <strong>${agente.nombre}</strong>. Una vez validado, podrás acceder a todos los beneficios.
+                        </p>
+                        
+                        <div style="background: #f0f4ff; border: 2px solid var(--primary); border-radius: 8px; padding: 20px; margin-bottom: 30px;">
+                            <p style="font-size: 14px; color: var(--primary); margin: 0;">
+                                📧 Recibirás un email cuando tu cuenta sea aprobada.
+                            </p>
+                        </div>
+
+                        <button class="btn btn-secondary" onclick="logout()" style="width: 100%;">Volver</button>
+                    </div>
+                </div>
+            `;
+            showVista('vistaDashboardCliente');
+        }
+
+        function showDashboardAgente() {
+            document.getElementById('header').style.display = 'block';
+            document.getElementById('userNameDisplay').textContent = appState.usuarioActual.nombre;
+            document.getElementById('userRoleDisplay').textContent = 'Agente';
+
+            // Limpiar inputs
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('regNombre').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regTelefono').value = '';
+            document.getElementById('regPassword').value = '';
+
+            // Resetear vista
+            document.getElementById('vistaDashboardAgente').innerHTML = `
+                <div class="dashboard-main">
+                    <div class="container">
+                        <div id="agenteAlertContainer"></div>
+                        <div class="dashboard-header">
+                            <h2>Dashboard Agente</h2>
+                            <p>Seguimiento de cupones de tus clientes</p>
+                        </div>
+                        <div id="notificacionesAgente" style="background: white; border-radius: 12px; padding: 25px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+                            <!-- Se llena dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            renderNotificacionesAgente();
+            showVista('vistaDashboardAgente');
+        }
+
+        function showDashboardAdmin() {
+            document.getElementById('header').style.display = 'block';
+            document.getElementById('userNameDisplay').textContent = appState.usuarioActual.nombre;
+            document.getElementById('userRoleDisplay').textContent = 'Admin';
+
+            // Limpiar inputs
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('regNombre').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regTelefono').value = '';
+            document.getElementById('regPassword').value = '';
+
+            // Resetear vista
+            document.getElementById('vistaAdmin').innerHTML = `
+                <div class="dashboard-main">
+                    <div class="container">
+                        <div id="adminAlertContainer"></div>
+                        <div class="dashboard-header">
+                            <h2>Panel Administrativo</h2>
+                            <p>Gestiona agentes y prestadores</p>
+                        </div>
+                        
+                        <div class="tabs">
+                            <button class="tab-btn activo" onclick="switchAdminTab('clientes')">Validar Clientes</button>
+                            <button class="tab-btn" onclick="switchAdminTab('agentes')">Agentes</button>
+                            <button class="tab-btn" onclick="switchAdminTab('prestadores')">Prestadores</button>
+                        </div>
+
+                        <!-- Tab: Validar Clientes -->
+                        <div id="adminClientesTab" class="admin-section">
+                            <h3>Clientes Pendientes de Validación</h3>
+                            <div style="margin-top: 20px; overflow-x: auto;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                            <th>Teléfono</th>
+                                            <th>Agente</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="clientesTableBody">
+                                        <!-- Se llena dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Agentes -->
+                        <div id="adminAgentesTab" class="admin-section" style="display: none;">
+                            <h3>Gestionar Agentes</h3>
+                            <button class="btn btn-primary btn-sm" onclick="openModalAgregar('agente')">+ Agregar Agente</button>
+                            <div style="margin-top: 20px; overflow-x: auto;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="agentesTableBody">
+                                        <!-- Se llena dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Prestadores -->
+                        <div id="adminPrestadoresTab" class="admin-section" style="display: none;">
+                            <h3>Gestionar Prestadores</h3>
+                            <button class="btn btn-primary btn-sm" onclick="openModalAgregar('prestador')">+ Agregar Prestador</button>
+                            <div style="margin-top: 20px; overflow-x: auto;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                            <th>Descuento</th>
+                                            <th>URL</th>
+                                            <th>Descripción</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="prestadoresTableBody">
+                                        <!-- Se llena dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            renderClientes();
+            renderAgentes();
+            renderPrestadores();
+            showVista('vistaAdmin');
+        }
+
+        function renderCuponesCliente() {
+            const clienteId = appState.usuarioActual.clienteId;
+            const cuponesDelCliente = appState.cupones.filter(c => c.clienteId === clienteId);
+
+            let html = '';
+
+            appState.prestadores.forEach(prestador => {
+                const cuponesPrestador = cuponesDelCliente.filter(c => c.prestadorId === prestador.id);
+                const cupone = cuponesPrestador.length > 0 ? cuponesPrestador[0] : null;
+
+                const tieneActivo = cupone && cupone.estado === 'activo';
+                const tieneUsado = cupone && cupone.estado === 'usado';
+
+                const descuentoText = prestador.descuento ? `${prestador.descuento}%` : 'Por confirmar';
+
+                html += `
+                    <div class="cupone-card" style="border-left-color: ${prestador.color}; position: relative; overflow: hidden; padding: 0;">
+                        <!-- Banner superior: Logo fijo + Diseño flexible -->
+                        <div style="background: ${prestador.color}; display: flex; align-items: stretch; width: 100%; box-sizing: border-box; position: relative; overflow: hidden;">
+                            
+                            <!-- Logo FIJO a la izquierda -->
+                            <div style="flex-shrink: 0; width: 100px; display: flex; align-items: center; justify-content: center; padding: 16px;">
+                                <span style="font-size: 64px; line-height: 1;">${prestador.icono}</span>
+                            </div>
+                            
+                            <!-- Diseño FLEXIBLE (se expande/contrae) -->
+                            <div style="flex: 1; display: flex; align-items: center; justify-content: space-between; padding: 24px 20px; gap: 16px; position: relative;">
+                                <!-- Fondo decorativo que se expande -->
+                                <div style="position: absolute; right: -30px; top: -20px; font-size: 120px; opacity: 0.08; pointer-events: none;">${prestador.icono}</div>
+                                
+                                <!-- Info del prestador -->
+                                <div style="position: relative; z-index: 1; min-width: 0; flex: 1;">
+                                    <div style="color: white; font-weight: 700; font-size: 18px; margin-bottom: 4px; word-break: break-word;">${prestador.nombre}</div>
+                                    <div style="color: rgba(255,255,255,0.85); font-size: 12px; line-height: 1.4;">${prestador.descripcion}</div>
+                                </div>
+                                
+                                <!-- Descuento a la derecha -->
+                                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; flex-shrink: 0; position: relative; z-index: 1;">
+                                    <span style="color: white; font-weight: bold; font-size: 36px; line-height: 1;">${prestador.descuento ? prestador.descuento : '?'}</span>
+                                    <span style="color: rgba(255,255,255,0.9); font-size: 11px; font-weight: 500; margin-top: 2px;">desc.</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contenido de la card -->
+                        <div style="padding: 20px;">
+                            <div style="position: absolute; top: 140px; right: -20px; font-size: 100px; opacity: 0.05; pointer-events: none;">${prestador.icono}</div>
+
+                            ${cupone ? `
+                                <div class="cupone-codigo">${cupone.codigo}</div>
+                                <div class="cupone-fecha">
+                                    ${tieneActivo ? `Válido hasta ${cupone.expirado.toLocaleDateString('es-AR')}` : ''}
+                                    ${tieneUsado ? `Canjeado el ${cupone.usadoEn.toLocaleDateString('es-AR')}` : ''}
+                                </div>
+                                <div class="cupone-estado">
+                                    <span class="${tieneActivo ? 'estado-activo' : 'estado-usado'}">
+                                        ${tieneActivo ? '✓ Disponible' : '✓ Canjeado'}
+                                    </span>
+                                </div>
+                                ${tieneActivo ? `<p style="font-size: 12px; color: #999; margin-top: 15px;">Mostrá este código al prestador para canjear</p>` : ''}
+                                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                                    ${tieneActivo ? `<button class="btn btn-primary btn-sm" onclick="crearCupon('${prestador.id}', '${prestador.nombre}')" style="flex: 1;">Crear cupón</button>` : ''}
+                                    <a href="${prestador.url}" target="_blank" class="btn btn-secondary btn-sm" style="flex: 1; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">Visitar sitio →</a>
+                                </div>
+                                <p style="font-size: 12px; color: #999; margin-top: 10px; cursor: pointer; text-decoration: underline;" onclick="openModalTyC('${prestador.id}', '${prestador.nombre}')">Términos y condiciones del descuento</p>
+                            ` : `
+                                <div style="text-align: center; padding: 20px 0; color: #999;">
+                                    <p style="margin-bottom: 10px;">No tenés cupón de este prestador</p>
+                                    <div style="display: flex; gap: 10px;">
+                                        <button class="btn btn-primary btn-sm" onclick="crearCupon('${prestador.id}', '${prestador.nombre}')" style="flex: 1;">Crear cupón</button>
+                                        <a href="${prestador.url}" target="_blank" class="btn btn-secondary btn-sm" style="flex: 1; text-align: center; text-decoration: none; display: flex; align-items: center; justify-content: center;">Visitar sitio →</a>
+                                    </div>
+                                    <p style="font-size: 12px; color: #999; margin-top: 10px; cursor: pointer; text-decoration: underline;" onclick="openModalTyC('${prestador.id}', '${prestador.nombre}')">Términos y condiciones del descuento</p>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                `;
+            });
+
+            document.getElementById('cuponesGrid').innerHTML = html;
+        }
+
+        function crearCupon(prestadorId, prestadorNombre) {
+            // Generar código único
+            const codigo = `SCGL-${prestadorNombre.substring(0, 3).toUpperCase()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
+
+            const nuevoCupon = {
+                id: Date.now().toString(),
+                clienteId: appState.usuarioActual.clienteId,
+                prestadorId,
+                agenteId: appState.clientes.find(c => c.id === appState.usuarioActual.clienteId).agenteId,
+                codigo,
+                estado: 'activo',
+                creadoEn: new Date(),
+                expirado: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000),
+                usadoEn: null
+            };
+
+            appState.cupones.push(nuevoCupon);
+
+            showAlert('vistaDashboardCliente', `✓ Cupón creado: ${codigo}`, 'success');
+            renderCuponesCliente();
+
+            // Simular envío de email
+            setTimeout(() => {
+                showAlert('vistaDashboardCliente', `📧 Mails enviados a ti y a ${prestadorNombre}`, 'info');
+            }, 500);
+        }
+
+        function validarCodigoPrestador() {
+            const codigo = document.getElementById('inputCodigoValidador').value.trim().toUpperCase();
+            
+            if (!codigo) {
+                showAlertValidador('Por favor ingresá un código', 'error');
+                return;
+            }
+
+            // Buscar cupón
+            const cupone = appState.cupones.find(c => c.codigo === codigo);
+
+            if (!cupone) {
+                showAlertValidador('❌ Código no encontrado', 'error');
+                return;
+            }
+
+            if (cupone.estado === 'usado') {
+                showAlertValidador('❌ Este cupón ya fue canjeado', 'error');
+                return;
+            }
+
+            if (cupone.estado === 'expirado') {
+                showAlertValidador('❌ Este cupón expiró', 'error');
+                return;
+            }
+
+            // Verificar que no esté expirado
+            if (new Date() > cupone.expirado) {
+                cupone.estado = 'expirado';
+                showAlertValidador('❌ Este cupón expiró', 'error');
+                return;
+            }
+
+            // Si llegó aquí, el cupón es válido
+            const cliente = appState.clientes.find(c => c.id === cupone.clienteId);
+            const prestador = appState.prestadores.find(p => p.id === cupone.prestadorId);
+            const agente = appState.agentes.find(a => a.id === cupone.agenteId);
+
+            document.getElementById('resultadoValidacion').innerHTML = `
+                <div style="background: #dcfce7; border: 2px solid var(--success); border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                    <h3 style="color: var(--success); margin-bottom: 15px;">✓ CUPÓN VÁLIDO</h3>
+                    <div style="background: white; padding: 15px; border-radius: 6px; margin-bottom: 15px;">
+                        <div style="margin-bottom: 10px;">
+                            <strong style="color: var(--primary);">Cliente:</strong> ${cliente.nombre}
+                        </div>
+                        <div style="margin-bottom: 10px;">
+                            <strong style="color: var(--primary);">Descuento:</strong> ${prestador.descuento}% en ${prestador.nombre}
+                        </div>
+                        <div>
+                            <strong style="color: var(--primary);">Válido hasta:</strong> ${cupone.expirado.toLocaleDateString('es-AR')}
+                        </div>
+                    </div>
+                    <button class="btn btn-success" onclick="confirmarCanjeDesdeValidador('${cupone.id}', '${cliente.nombre}', '${prestador.nombre}', '${agente.nombre}')" style="width: 100%;">Confirmar canje</button>
+                </div>
+            `;
+        }
+
+        function confirmarCanjeDesdeValidador(cuponeId, clienteNombre, prestadorNombre, agenteNombre) {
+            const cupone = appState.cupones.find(c => c.id === cuponeId);
+            cupone.estado = 'usado';
+            cupone.usadoEn = new Date();
+
+            document.getElementById('resultadoValidacion').innerHTML = `
+                <div style="background: #dbeafe; border: 2px solid #3b82f6; border-radius: 8px; padding: 20px; text-align: center;">
+                    <h3 style="color: #1e40af; margin-bottom: 15px;">✓ Cupón canjeado correctamente</h3>
+                    <p style="color: #1e40af; margin-bottom: 20px;">Se enviaron confirmaciones por email a:<br><strong>${clienteNombre}</strong><br><strong>${agenteNombre}</strong></p>
+                </div>
+            `;
+
+            document.getElementById('inputCodigoValidador').value = '';
+            document.getElementById('inputCodigoValidador').disabled = true;
+            document.querySelector('button[onclick="validarCodigoPrestador()"]').disabled = true;
+
+            showAlertValidador('✓ Canje procesado exitosamente', 'success');
+
+            setTimeout(() => {
+                limpiarValidador();
+            }, 3000);
+        }
+
+        function limpiarValidador() {
+            document.getElementById('inputCodigoValidador').value = '';
+            document.getElementById('inputCodigoValidador').disabled = false;
+            document.querySelector('button[onclick="validarCodigoPrestador()"]').disabled = false;
+            document.getElementById('resultadoValidacion').innerHTML = '';
+            document.getElementById('validadorAlertContainer').innerHTML = '';
+        }
+
+        function volverDelValidador() {
+            limpiarValidador();
+            showVista('vistaLogin');
+        }
+
+        function showAlertValidador(mensaje, tipo) {
+            const alertHTML = `<div class="alert alert-${tipo} mostrar">${mensaje}</div>`;
+            document.getElementById('validadorAlertContainer').innerHTML = alertHTML;
+
+            setTimeout(() => {
+                document.getElementById('validadorAlertContainer').innerHTML = '';
+            }, 4000);
+        }
+
+        function renderNotificacionesAgente() {
+            const agenteId = appState.usuarioActual.agenteId;
+            const cuponesPorAgente = appState.cupones.filter(c => c.agenteId === agenteId);
+
+            let html = '<h3 style="color: #324a70; margin-bottom: 20px;">Actividad de cupones</h3>';
+
+            if (cuponesPorAgente.length === 0) {
+                html += '<p style="color: #999;">No hay cupones de tus clientes aún</p>';
+            } else {
+                cuponesPorAgente.forEach(cupone => {
+                    const cliente = appState.clientes.find(c => c.id === cupone.clienteId);
+                    const prestador = appState.prestadores.find(p => p.id === cupone.prestadorId);
+
+                    const accion = cupone.estado === 'usado' ? `Canjeó cupón en ${prestador.nombre}` : `Creó cupón de ${prestador.nombre}`;
+                    const fecha = cupone.estado === 'usado' ? cupone.usadoEn : cupone.creadoEn;
+
+                    html += `
+                        <div style="background: #f9f9f9; padding: 15px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid #324a70;">
+                            <div style="font-weight: 600; color: #324a70;">${cliente.nombre}</div>
+                            <div style="color: #666; font-size: 14px; margin: 5px 0;">${accion}</div>
+                            <div style="color: #999; font-size: 12px;">
+                                ${fecha.toLocaleString('es-AR')} | Código: <strong>${cupone.codigo}</strong>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            document.getElementById('notificacionesAgente').innerHTML = html;
+        }
+
+        function renderClientes() {
+            let html = '';
+            const clientesPendientes = appState.clientes.filter(c => !c.validado);
+            
+            if (clientesPendientes.length === 0) {
+                html = '<tr><td colspan="6" style="text-align: center; padding: 40px; color: #999;">No hay clientes pendientes de validación</td></tr>';
+            } else {
+                clientesPendientes.forEach(cliente => {
+                    const agente = appState.agentes.find(a => a.id === cliente.agenteId);
+                    html += `
+                        <tr>
+                            <td>${cliente.nombre}</td>
+                            <td>${cliente.email}</td>
+                            <td>${cliente.telefono}</td>
+                            <td>${agente.nombre}</td>
+                            <td><span class="status-badge" style="background: #fef3c7; color: #92400e;">Pendiente</span></td>
+                            <td>
+                                <div class="actions">
+                                    <button class="btn btn-sm btn-success" onclick="validarCliente('${cliente.id}')">✓ Aprobar</button>
+                                    <button class="btn btn-sm btn-danger" onclick="rechazarCliente('${cliente.id}')">✕ Rechazar</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `;
+                });
+            }
+            document.getElementById('clientesTableBody').innerHTML = html;
+        }
+
+        function validarCliente(clienteId) {
+            const cliente = appState.clientes.find(c => c.id === clienteId);
+            cliente.validado = true;
+            cliente.validado_at = new Date();
+
+            showAlert('vistaAdmin', `✓ ${cliente.nombre} validado correctamente`, 'success');
+            renderClientes();
+
+            // Simular email
+            setTimeout(() => {
+                showAlert('vistaAdmin', `📧 Email enviado a ${cliente.email}`, 'info');
+            }, 500);
+        }
+
+        function rechazarCliente(clienteId) {
+            if (confirm('¿Estás seguro de que querés rechazar este cliente?')) {
+                appState.clientes = appState.clientes.filter(c => c.id !== clienteId);
+                showAlert('vistaAdmin', 'Cliente rechazado', 'success');
+                renderClientes();
+            }
+        }
+
+        function renderAgentes() {
+            let html = '';
+            appState.agentes.forEach(agente => {
+                html += `
+                    <tr>
+                        <td>${agente.nombre}</td>
+                        <td>${agente.email}</td>
+                        <td><span class="status-badge ${agente.activo ? 'status-activo' : 'status-inactivo'}">${agente.activo ? 'Activo' : 'Inactivo'}</span></td>
+                        <td>
+                            <div class="actions">
+                                <button class="btn btn-sm btn-secondary" onclick="openModalEditar('agente', '${agente.id}')">Editar</button>
+                                <button class="btn btn-sm btn-danger" onclick="toggleAgenteEstado('${agente.id}')">
+                                    ${agente.activo ? 'Desactivar' : 'Activar'}
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById('agentesTableBody').innerHTML = html;
+        }
+
+        function renderPrestadores() {
+            let html = '';
+            appState.prestadores.forEach(prestador => {
+                html += `
+                    <tr>
+                        <td>${prestador.icono} ${prestador.nombre}</td>
+                        <td>${prestador.email}</td>
+                        <td>${prestador.descuento ? prestador.descuento + '%' : 'Por confirmar'}</td>
+                        <td style="font-size: 12px; color: #666;"><a href="${prestador.url}" target="_blank" style="color: var(--primary); text-decoration: none;">${prestador.url}</a></td>
+                        <td style="font-size: 12px; color: #666;">${prestador.descripcion}</td>
+                        <td><span class="status-badge ${prestador.activo ? 'status-activo' : 'status-inactivo'}">${prestador.activo ? 'Activo' : 'Inactivo'}</span></td>
+                        <td>
+                            <div class="actions">
+                                <button class="btn btn-sm btn-secondary" onclick="openModalEditar('prestador', '${prestador.id}')">Editar</button>
+                                <button class="btn btn-sm btn-danger" onclick="togglePrestadorEstado('${prestador.id}')">
+                                    ${prestador.activo ? 'Desactivar' : 'Activar'}
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            });
+            document.getElementById('prestadoresTableBody').innerHTML = html;
+        }
+
+        function openModalAgregar(tipo) {
+            document.getElementById('modalTitle').textContent = tipo === 'agente' ? 'Agregar Agente' : 'Agregar Prestador';
+
+            let html = '';
+            if (tipo === 'agente') {
+                html = `
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" id="modalNombre" placeholder="Nombre del agente">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="modalEmail" placeholder="email@teamscaglia.com">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-primary" onclick="guardarAgente()">Guardar</button>
+                        <button class="btn btn-secondary" onclick="closeModal('modalAgregar')">Cancelar</button>
+                    </div>
+                `;
+            } else {
+                html = `
+                    <div class="form-group">
+                        <label>Nombre del Prestador</label>
+                        <input type="text" id="modalNombre" placeholder="Ej: Nike">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="modalEmail" placeholder="info@prestador.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Descuento (%)</label>
+                        <input type="number" id="modalDescuento" placeholder="20" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label>URL del sitio web</label>
+                        <input type="url" id="modalUrl" placeholder="https://prestador.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Ícono (emoji)</label>
+                        <input type="text" id="modalIcono" placeholder="Ej: 👟" maxlength="2" style="font-size: 24px; text-align: center;">
+                    </div>
+                    <div class="form-group">
+                        <label>Color (hexadecimal)</label>
+                        <input type="color" id="modalColor" value="#324a70">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea id="modalDescripcion" placeholder="Descripción del descuento" style="width: 100%; padding: 12px; border: 2px solid #e5e5e5; border-radius: 8px; font-family: inherit;" rows="3"></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-primary" onclick="guardarPrestador()">Guardar</button>
+                        <button class="btn btn-secondary" onclick="closeModal('modalAgregar')">Cancelar</button>
+                    </div>
+                `;
+            }
+
+            document.getElementById('modalFormContainer').innerHTML = html;
+            document.getElementById('modalAgregar').dataset.tipo = tipo;
+            document.getElementById('modalAgregar').classList.add('activo');
+        }
+
+        function openModalEditar(tipo, id) {
+            let item;
+            if (tipo === 'agente') {
+                item = appState.agentes.find(a => a.id === id);
+                document.getElementById('modalTitle').textContent = 'Editar Agente';
+                const html = `
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" id="modalNombre" value="${item.nombre}">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="modalEmail" value="${item.email}">
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-primary" onclick="actualizarAgente('${id}')">Guardar cambios</button>
+                        <button class="btn btn-secondary" onclick="closeModal('modalAgregar')">Cancelar</button>
+                    </div>
+                `;
+                document.getElementById('modalFormContainer').innerHTML = html;
+            } else {
+                item = appState.prestadores.find(p => p.id === id);
+                document.getElementById('modalTitle').textContent = 'Editar Prestador';
+                const html = `
+                    <div class="form-group">
+                        <label>Nombre</label>
+                        <input type="text" id="modalNombre" value="${item.nombre}">
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="modalEmail" value="${item.email}">
+                    </div>
+                    <div class="form-group">
+                        <label>Descuento (%)</label>
+                        <input type="number" id="modalDescuento" value="${item.descuento || ''}" min="0" max="100">
+                    </div>
+                    <div class="form-group">
+                        <label>URL del sitio web</label>
+                        <input type="url" id="modalUrl" value="${item.url || ''}">
+                    </div>
+                    <div class="form-group">
+                        <label>Ícono (emoji)</label>
+                        <input type="text" id="modalIcono" value="${item.icono || ''}" maxlength="2" style="font-size: 24px; text-align: center;">
+                    </div>
+                    <div class="form-group">
+                        <label>Color (hexadecimal)</label>
+                        <input type="color" id="modalColor" value="${item.color || '#324a70'}">
+                    </div>
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea id="modalDescripcion" style="width: 100%; padding: 12px; border: 2px solid #e5e5e5; border-radius: 8px; font-family: inherit;" rows="3">${item.descripcion}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Términos y Condiciones del Descuento</label>
+                        <textarea id="modalTyC" style="width: 100%; padding: 12px; border: 2px solid #e5e5e5; border-radius: 8px; font-family: inherit;" rows="4">${item.tyc || ''}</textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px;">
+                        <button class="btn btn-primary" onclick="actualizarPrestador('${id}')">Guardar cambios</button>
+                        <button class="btn btn-secondary" onclick="closeModal('modalAgregar')">Cancelar</button>
+                    </div>
+                `;
+                document.getElementById('modalFormContainer').innerHTML = html;
+            }
+
+            document.getElementById('modalAgregar').classList.add('activo');
+        }
+
+        function guardarAgente() {
+            const nombre = document.getElementById('modalNombre').value.trim();
+            const email = document.getElementById('modalEmail').value.trim();
+
+            if (!nombre || !email) {
+                alert('Completa todos los campos');
+                return;
+            }
+
+            appState.agentes.push({
+                id: Date.now().toString(),
+                nombre,
+                email,
+                activo: true
+            });
+
+            showAlert('vistaAdmin', 'Agente agregado correctamente', 'success');
+            closeModal('modalAgregar');
+            renderAgentes();
+        }
+
+        function actualizarAgente(id) {
+            const nombre = document.getElementById('modalNombre').value.trim();
+            const email = document.getElementById('modalEmail').value.trim();
+
+            const agente = appState.agentes.find(a => a.id === id);
+            agente.nombre = nombre;
+            agente.email = email;
+
+            showAlert('vistaAdmin', 'Agente actualizado', 'success');
+            closeModal('modalAgregar');
+            renderAgentes();
+        }
+
+        function guardarPrestador() {
+            const nombre = document.getElementById('modalNombre').value.trim();
+            const email = document.getElementById('modalEmail').value.trim();
+            const descuento = document.getElementById('modalDescuento').value ? parseInt(document.getElementById('modalDescuento').value) : null;
+            const descripcion = document.getElementById('modalDescripcion').value.trim();
+            const url = document.getElementById('modalUrl').value.trim();
+            const icono = document.getElementById('modalIcono').value.trim();
+            const color = document.getElementById('modalColor').value;
+            const tyc = document.getElementById('modalTyC').value.trim();
+
+            if (!nombre || !email || !url || !icono || !tyc) {
+                alert('Completa los campos obligatorios (incluye T&C)');
+                return;
+            }
+
+            appState.prestadores.push({
+                id: Date.now().toString(),
+                nombre,
+                email,
+                descuento,
+                descripcion,
+                url,
+                icono,
+                color,
+                tyc,
+                activo: true
+            });
+
+            showAlert('vistaAdmin', 'Prestador agregado correctamente', 'success');
+            closeModal('modalAgregar');
+            renderPrestadores();
+        }
+
+        function actualizarPrestador(id) {
+            const nombre = document.getElementById('modalNombre').value.trim();
+            const email = document.getElementById('modalEmail').value.trim();
+            const descuento = document.getElementById('modalDescuento').value ? parseInt(document.getElementById('modalDescuento').value) : null;
+            const descripcion = document.getElementById('modalDescripcion').value.trim();
+            const url = document.getElementById('modalUrl').value.trim();
+            const icono = document.getElementById('modalIcono').value.trim();
+            const color = document.getElementById('modalColor').value;
+            const tyc = document.getElementById('modalTyC').value.trim();
+
+            if (!nombre || !email || !url || !icono || !tyc) {
+                showAlert('vistaAdmin', '❌ Completa todos los campos obligatorios (incluye T&C)', 'error');
+                return;
+            }
+
+            const prestador = appState.prestadores.find(p => p.id === id);
+            
+            if (!prestador) {
+                showAlert('vistaAdmin', '❌ Prestador no encontrado', 'error');
+                return;
+            }
+
+            prestador.nombre = nombre;
+            prestador.email = email;
+            prestador.descuento = descuento;
+            prestador.descripcion = descripcion;
+            prestador.url = url;
+            prestador.icono = icono;
+            prestador.color = color;
+            prestador.tyc = tyc;
+
+            showAlert('vistaAdmin', '✓ Prestador actualizado correctamente', 'success');
+            closeModal('modalAgregar');
+            renderPrestadores();
+        }
+
+        function toggleAgenteEstado(id) {
+            const agente = appState.agentes.find(a => a.id === id);
+            agente.activo = !agente.activo;
+            renderAgentes();
+        }
+
+        function togglePrestadorEstado(id) {
+            const prestador = appState.prestadores.find(p => p.id === id);
+            prestador.activo = !prestador.activo;
+            renderPrestadores();
+        }
+
+        function switchAdminTab(tab) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('activo'));
+            event.target.classList.add('activo');
+
+            document.getElementById('adminClientesTab').style.display = tab === 'clientes' ? 'block' : 'none';
+            document.getElementById('adminAgentesTab').style.display = tab === 'agentes' ? 'block' : 'none';
+            document.getElementById('adminPrestadoresTab').style.display = tab === 'prestadores' ? 'block' : 'none';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('activo');
+        }
+
+        function openModalTyC(prestadorId, prestadorNombre) {
+            const prestador = appState.prestadores.find(p => p.id === prestadorId);
+            if (!prestador) return;
+
+            const tycHtml = `
+                <div class="modal" id="modalTyC" style="display: flex;">
+                    <div class="modal-content" style="max-width: 600px;">
+                        <div class="modal-header">
+                            <h3 style="color: var(--primary);">Términos y condiciones del descuento</h3>
+                            <button class="btn-close" onclick="closeModal('modalTyC')">×</button>
+                        </div>
+                        <div style="padding: 20px; max-height: 400px; overflow-y: auto;">
+                            <h4 style="color: var(--primary); margin-bottom: 10px;">${prestador.nombre}</h4>
+                            <p style="color: #333; line-height: 1.6; font-size: 14px; white-space: pre-wrap;">${prestador.tyc}</p>
+                            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #e5e5e5;">
+                                <button class="btn btn-primary" onclick="closeModal('modalTyC')" style="width: 100%;">Entendido</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Agregar modal al DOM si no existe
+            if (!document.getElementById('modalTyC')) {
+                document.body.insertAdjacentHTML('beforeend', tycHtml);
+            } else {
+                document.getElementById('modalTyC').remove();
+                document.body.insertAdjacentHTML('beforeend', tycHtml);
+            }
+
+            document.getElementById('modalTyC').classList.add('activo');
+        }
+
+        function logout() {
+            appState.usuarioActual = null;
+            document.getElementById('header').style.display = 'none';
+            showVista('vistaLogin');
+
+            // Limpiar formularios
+            document.getElementById('loginEmail').value = '';
+            document.getElementById('loginPassword').value = '';
+            document.getElementById('formLoginContainer').style.display = 'block';
+            document.getElementById('formRegistroContainer').style.display = 'none';
+        }
+
+        function showAlert(vistaId, mensaje, tipo) {
+            const containerId = vistaId === 'vistaAdmin' ? 'adminAlertContainer' : 
+                               vistaId === 'vistaDashboardAgente' ? 'agenteAlertContainer' : 'alertContainer';
+
+            const alertHTML = `<div class="alert alert-${tipo} mostrar">${mensaje}</div>`;
+            document.getElementById(containerId).innerHTML = alertHTML;
+
+            const duracion = tipo === 'error' ? 5000 : 4000;
+            setTimeout(() => {
+                document.getElementById(containerId).innerHTML = '';
+            }, duracion);
+        }
+
+        // ==================== INICIALIZACIÓN ====================
+
+        function init() {
+            // Llenar dropdown de agentes en registro
+            const select = document.getElementById('regAgente');
+            appState.agentes.forEach(agente => {
+                const option = document.createElement('option');
+                option.value = agente.id;
+                option.textContent = agente.nombre;
+                select.appendChild(option);
+            });
+
+            // Mensajes de login de prueba
+            console.log('🔐 Credenciales de prueba:');
+            console.log('Admin: admin@teamscaglia.com / admin123');
+            console.log('Agente: agente@teamscaglia.com / agente123');
+            console.log('Cliente: cliente@teamscaglia.com / cliente123');
+        }
+
+        // Cerrar modal haciendo clic afuera
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                e.target.classList.remove('activo');
+            }
+        });
+
+        // Enter en inputs
+        document.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                if (document.getElementById('loginEmail') === document.activeElement) {
+                    handleLogin();
+                }
+            }
+        });
+
+        init();
+    </script>
+</body>
+</html>
