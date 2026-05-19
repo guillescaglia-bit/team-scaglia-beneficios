@@ -1173,21 +1173,13 @@
 
                 html += `
                     <div class="cupone-card" style="border-left-color: ${prestador.color}; position: relative; overflow: hidden; padding: 0;">
-                        <!-- Banner superior: Logo fijo izquierda + Imagen flexible derecha -->
-                        <div style="display: flex; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; min-height: 120px;">
+                        <!-- Banner superior: Solo imagen flexible, 15% a la derecha -->
+                        <div style="background: ${prestador.banner ? `url('${prestador.banner}') left/cover` : prestador.color}; width: 100%; box-sizing: border-box; position: relative; overflow: hidden; min-height: 120px; display: flex; align-items: center; justify-content: space-between; padding-right: 24px;">
                             
-                            <!-- Logo FIJO a la izquierda (100px ancho, siempre visible) -->
-                            <div style="flex-shrink: 0; width: 100px; background: ${prestador.color}; display: flex; align-items: center; justify-content: center; padding: 16px; position: relative; z-index: 2;">
-                                <!-- Espacio reservado para logo/color -->
-                            </div>
-                            
-                            <!-- Banner FLEXIBLE (se recorta desde la derecha) -->
-                            <div style="flex: 1; background: ${prestador.banner ? `url('${prestador.banner}') left/cover` : prestador.color}; position: relative; display: flex; align-items: center; justify-content: flex-end; padding-right: 24px;">
-                                <!-- Descuento SUPERPUESTO en la esquina derecha -->
-                                <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); padding: 12px 20px; border-radius: 8px;">
-                                    <span style="color: white; font-weight: bold; font-size: 36px; line-height: 1;">${prestador.descuento ? prestador.descuento : '?'}</span>
-                                    <span style="color: rgba(255,255,255,0.95); font-size: 11px; font-weight: 500; margin-top: 2px;">desc.</span>
-                                </div>
+                            <!-- Descuento SUPERPUESTO en la esquina derecha -->
+                            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); padding: 12px 20px; border-radius: 8px; flex-shrink: 0;">
+                                <span style="color: white; font-weight: bold; font-size: 36px; line-height: 1;">${prestador.descuento ? prestador.descuento : '?'}</span>
+                                <span style="color: rgba(255,255,255,0.95); font-size: 11px; font-weight: 500; margin-top: 2px;">desc.</span>
                             </div>
                         </div>
 
