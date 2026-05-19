@@ -624,10 +624,62 @@
                 padding: 8px;
             }
 
+            /* Reducir fuentes en mobile */
+            .logo {
+                font-size: 18px;
+            }
+
+            .user-name {
+                font-size: 12px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 24px !important;
+                margin-bottom: 10px !important;
+            }
+
+            .dashboard-header p {
+                font-size: 13px !important;
+            }
+
+            /* Cupone cards compacto */
+            .cupone-card {
+                padding: 15px !important;
+                margin-bottom: 15px;
+            }
+
+            .cupone-codigo {
+                font-size: 13px !important;
+                padding: 10px !important;
+                margin-bottom: 10px;
+            }
+
+            .cupone-fecha {
+                font-size: 11px !important;
+                margin-bottom: 8px;
+            }
+
+            .cupone-estado {
+                font-size: 12px !important;
+                margin-bottom: 10px;
+            }
+
+            /* Botones más compactos */
+            .btn {
+                padding: 10px !important;
+                font-size: 14px !important;
+            }
+
+            .btn-sm {
+                padding: 8px 12px !important;
+                font-size: 12px !important;
+            }
+
             /* Asegurar que modales se adapten */
             .modal-content {
                 max-width: 95% !important;
                 margin: 20px;
+                padding: 20px !important;
             }
 
             /* Ajustar padding en mobile */
@@ -638,12 +690,23 @@
             /* Asegurar que no haya overflow en inputs */
             input, select, textarea {
                 max-width: 100%;
+                font-size: 16px; /* Prevenir zoom en iOS */
             }
 
             /* Body y html sin restricciones */
             html, body {
                 width: 100%;
                 overflow-x: hidden;
+            }
+
+            /* Header más compacto */
+            header {
+                padding: 12px 0;
+            }
+
+            .btn-logout {
+                padding: 6px 12px;
+                font-size: 12px;
             }
         }
 
