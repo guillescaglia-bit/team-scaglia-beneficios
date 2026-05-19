@@ -2,13 +2,21 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, maximum-scale=5.0, user-scalable=yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Beneficios Team Scaglia</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow-x: hidden;
         }
 
         body {
@@ -614,6 +622,28 @@
 
             td, th {
                 padding: 8px;
+            }
+
+            /* Asegurar que modales se adapten */
+            .modal-content {
+                max-width: 95% !important;
+                margin: 20px;
+            }
+
+            /* Ajustar padding en mobile */
+            .container {
+                padding: 0 12px;
+            }
+
+            /* Asegurar que no haya overflow en inputs */
+            input, select, textarea {
+                max-width: 100%;
+            }
+
+            /* Body y html sin restricciones */
+            html, body {
+                width: 100%;
+                overflow-x: hidden;
             }
         }
 
