@@ -1147,12 +1147,15 @@
             // Mock: Simular login (después será con Supabase)
             if (email === 'admin@teamscaglia.com' && password === 'admin123') {
                 appState.usuarioActual = { id: 'admin', nombre: 'Admin Team Scaglia', email, rol: 'admin' };
+                document.getElementById('vistaLogin').classList.remove('activa');
                 showDashboardAdmin();
             } else if (email === 'agente@teamscaglia.com' && password === 'agente123') {
                 appState.usuarioActual = { id: 'agente1', nombre: 'Guillermo Scaglia', email, rol: 'agente', agenteId: '1' };
+                document.getElementById('vistaLogin').classList.remove('activa');
                 showDashboardAgente();
             } else if (email === 'cliente@teamscaglia.com' && password === 'cliente123') {
                 appState.usuarioActual = { id: 'cliente1', nombre: 'Juan García', email, rol: 'cliente', clienteId: '1' };
+                document.getElementById('vistaLogin').classList.remove('activa');
                 showDashboardCliente();
             } else {
                 showAlert('vistaLogin', 'Email o contraseña incorrectos. Prueba: cliente@teamscaglia.com / cliente123', 'error');
@@ -1315,6 +1318,8 @@
                         
                         <div class="tabs">
                             <button class="tab-btn activo" onclick="switchAdminTab('clientes')">Validar Clientes</button>
+                            <button class="tab-btn" onclick="switchAdminTab('basedata')">Base de Datos</button>
+                            <button class="tab-btn" onclick="switchAdminTab('actividad')">Actividad Cupones</button>
                             <button class="tab-btn" onclick="switchAdminTab('agentes')">Agentes</button>
                             <button class="tab-btn" onclick="switchAdminTab('prestadores')">Prestadores</button>
                         </div>
@@ -1335,6 +1340,59 @@
                                         </tr>
                                     </thead>
                                     <tbody id="clientesTableBody">
+                                        <!-- Se llena dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Base de Datos Completa -->
+                        <div id="adminBasedataTab" class="admin-section" style="display: none;">
+                            <h3>Base de Datos - Todos los Clientes</h3>
+                            <div style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <input type="text" id="searchClientes" placeholder="Buscar por nombre, email o teléfono..." style="flex: 1; min-width: 200px; padding: 8px; border: 2px solid var(--border-color); border-radius: 6px;">
+                            </div>
+                            <div style="margin-top: 20px; overflow-x: auto;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Nombre</th>
+                                            <th>Email</th>
+                                            <th>Teléfono</th>
+                                            <th>Agente</th>
+                                            <th>Estado</th>
+                                            <th>Cupones Creados</th>
+                                            <th>Cupones Canjeados</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="basedataTableBody">
+                                        <!-- Se llena dinámicamente -->
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Tab: Actividad de Cupones -->
+                        <div id="adminActividadTab" class="admin-section" style="display: none;">
+                            <h3>Actividad - Cupones Creados y Canjeados</h3>
+                            <div style="margin-bottom: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                                <input type="text" id="searchActividad" placeholder="Buscar por cliente o prestador..." style="flex: 1; min-width: 200px; padding: 8px; border: 2px solid var(--border-color); border-radius: 6px;">
+                            </div>
+                            <div style="margin-top: 20px; overflow-x: auto;">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Cliente</th>
+                                            <th>Agente</th>
+                                            <th>Prestador</th>
+                                            <th>Código Cupón</th>
+                                            <th>Estado</th>
+                                            <th>Creado</th>
+                                            <th>Canjeado</th>
+                                            <th>Válido Hasta</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="actividadTableBody">
                                         <!-- Se llena dinámicamente -->
                                     </tbody>
                                 </table>
@@ -1398,6 +1456,10 @@
         function renderCuponesCliente() {
             const clienteId = appState.usuarioActual.clienteId;
             const cuponesDelCliente = appState.cupones.filter(c => c.clienteId === clienteId);
+
+            console.log('Cliente ID:', clienteId);
+            console.log('Cupones del cliente:', cuponesDelCliente);
+            console.log('Prestadores:', appState.prestadores);
 
             let html = '';
 
@@ -2027,7 +2089,7 @@
                         <td>${prestador ? prestador.nombre : 'N/A'}</td>
                         <td><strong>${cupone.codigo}</strong></td>
                         <td><span class="badge ${estado === 'Canjeado' ? 'badge-success' : estado === 'Expirado' ? 'badge-danger' : 'badge-info'}">${estado}</span></td>
-                        <td>${new Date(cupone.creado).toLocaleDateString('es-AR')}</td>
+                        <td>${new Date(cupone.creadoEn).toLocaleDateString('es-AR')}</td>
                         <td>${cupone.usadoEn ? new Date(cupone.usadoEn).toLocaleDateString('es-AR') : '-'}</td>
                         <td>${cupone.expirado.toLocaleDateString('es-AR')}</td>
                     </tr>
