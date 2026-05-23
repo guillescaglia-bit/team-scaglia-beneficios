@@ -874,6 +874,18 @@
                     <h1>Beneficios</h1>
                     <p>Team Scaglia</p>
 
+                    <!-- BOTONES DE PRUEBA - REMOVER DESPUÉS -->
+                    <div style="margin-bottom: 20px; padding: 15px; background: #f0f0f0; border-radius: 8px;">
+                        <p style="font-size: 12px; margin-bottom: 10px; color: #666;"><strong>🧪 TESTING (Remover después):</strong></p>
+                        <button class="btn btn-primary btn-sm" onclick="quickLogin('admin')" style="width: 100%; margin-bottom: 8px;">→ Admin</button>
+                        <button class="btn btn-primary btn-sm" onclick="quickLogin('agente')" style="width: 100%; margin-bottom: 8px;">→ Agente</button>
+                        <button class="btn btn-primary btn-sm" onclick="quickLogin('cliente')" style="width: 100%;">→ Cliente</button>
+                    </div>
+
+                    <hr style="margin: 20px 0; border: none; border-top: 1px solid #e5e5e5;">
+
+                    <p style="font-size: 12px; color: #999; text-align: center; margin-top: 15px;">O logueate manualmente:</p>
+
                     <div id="formLoginContainer">
                         <div class="form-group">
                             <label>Email</label>
@@ -1227,6 +1239,22 @@
                 showDashboardCliente();
             } else {
                 showAlert('vistaLogin', 'Email o contraseña incorrectos. Prueba: cliente@teamscaglia.com / cliente123', 'error');
+            }
+        }
+
+        function quickLogin(rol) {
+            if (rol === 'admin') {
+                appState.usuarioActual = { id: 'admin', nombre: 'Admin Team Scaglia', email: 'admin@teamscaglia.com', rol: 'admin' };
+                document.getElementById('vistaLogin').classList.remove('activa');
+                showDashboardAdmin();
+            } else if (rol === 'agente') {
+                appState.usuarioActual = { id: 'agente1', nombre: 'Guillermo Scaglia', email: 'agente@teamscaglia.com', rol: 'agente', agenteId: '1' };
+                document.getElementById('vistaLogin').classList.remove('activa');
+                showDashboardAgente();
+            } else if (rol === 'cliente') {
+                appState.usuarioActual = { id: 'cliente1', nombre: 'Juan García', email: 'cliente@teamscaglia.com', rol: 'cliente', clienteId: '1' };
+                document.getElementById('vistaLogin').classList.remove('activa');
+                showDashboardCliente();
             }
         }
 
