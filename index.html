@@ -325,6 +325,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 14px;
+            color: var(--text-primary);
         }
 
         th {
@@ -336,13 +337,28 @@
             border-bottom: 2px solid #e5e5e5;
         }
 
+        body.dark-mode th {
+            background: #3a3a3a;
+            color: #4a7ba7;
+            border-bottom-color: #404040;
+        }
+
         td {
             padding: 12px;
             border-bottom: 1px solid #e5e5e5;
+            color: var(--text-primary);
+        }
+
+        body.dark-mode td {
+            border-bottom-color: #404040;
         }
 
         tr:hover {
             background: #f9f9f9;
+        }
+
+        body.dark-mode tr:hover {
+            background: #3a3a3a;
         }
 
         .status-badge {
@@ -388,10 +404,13 @@
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             transition: all 0.3s;
             border-left: 4px solid var(--primary);
+            color: var(--text-primary);
         }
 
         body.dark-mode .cupone-card {
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+            background: #2a2a2a;
+            color: #f0f0f0;
         }
 
         .cupone-card:hover {
@@ -401,6 +420,55 @@
 
         body.dark-mode .cupone-card:hover {
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+        }
+
+        .cupone-codigo {
+            background: var(--gray-light);
+            color: var(--text-primary);
+            padding: 12px;
+            border: 2px dashed var(--primary);
+            border-radius: 8px;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            font-weight: 600;
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        body.dark-mode .cupone-codigo {
+            background: #3a3a3a;
+            color: #e0e0e0;
+            border-color: #4a7ba7;
+        }
+
+        .cupone-fecha {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        body.dark-mode .cupone-fecha {
+            color: #b0b0b0;
+        }
+
+        .prestador-nombre {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 4px;
+        }
+
+        body.dark-mode .prestador-nombre {
+            color: #4a7ba7;
+        }
+
+        .prestador-descripcion {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        body.dark-mode .prestador-descripcion {
+            color: #b0b0b0;
         }
 
         .cupone-header {
