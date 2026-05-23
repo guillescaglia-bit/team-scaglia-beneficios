@@ -123,10 +123,20 @@
         }
 
         header {
-            background: var(--primary);
+            background: linear-gradient(135deg, var(--primary) 0%, #2a5a8a 100%);
             color: var(--white);
-            padding: 20px 0;
-            border-bottom: 4px solid #2d3e5f;
+            padding: 16px 0;
+            border-bottom: 4px solid #1e3f5a;
+            box-shadow: 0 4px 12px rgba(50, 74, 112, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        body.dark-mode header {
+            background: linear-gradient(135deg, #1a3a5a 0%, #0f2540 100%);
+            border-bottom-color: #0a1a2e;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
         }
 
         header .container {
@@ -139,32 +149,105 @@
             font-size: 24px;
             font-weight: bold;
             letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.3s ease;
+        }
+
+        .logo a:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        .logo svg {
+            transition: all 0.3s ease;
+        }
+
+        .logo a:hover svg {
+            stroke-width: 2;
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
         }
 
         .user-info {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 25px;
         }
 
         .user-name {
-            font-size: 14px;
-            opacity: 0.9;
+            font-size: 15px;
+            opacity: 0.95;
+            font-weight: 500;
+        }
+
+        body.dark-mode .user-name {
+            opacity: 1;
         }
 
         .btn-logout {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.15);
             color: var(--white);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            padding: 8px 16px;
-            border-radius: 6px;
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 18px;
+            border-radius: 8px;
             cursor: pointer;
             font-size: 14px;
-            transition: all 0.3s;
+            font-weight: 500;
+            transition: all 0.3s ease;
         }
 
         .btn-logout:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-logout:active {
+            transform: translateY(0);
+        }
+
+        .btn-theme-toggle {
+            background: rgba(255, 255, 255, 0.15);
+            color: var(--white);
+            border: 1.5px solid rgba(255, 255, 255, 0.3);
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-theme-toggle:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-theme-toggle:active {
+            transform: translateY(0);
+        }
+
+        #themeIcon {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .btn-theme-toggle:hover #themeIcon {
+            transform: rotate(20deg) scale(1.1);
         }
 
         /* Vistas */
@@ -926,15 +1009,30 @@
     <!-- HEADER (oculto en login) -->
     <header id="header" style="display: none;">
         <div class="container">
-            <div class="logo">💰 Team Scaglia Beneficios</div>
+            <div class="logo">
+                <a href="https://www.instagram.com/teamscaglia" target="_blank" style="display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit;">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <circle cx="17.5" cy="6.5" r="1.5"></circle>
+                    </svg>
+                    <div>
+                        <div style="font-size: 16px; font-weight: 700; line-height: 1;">Beneficios</div>
+                        <div style="font-size: 12px; opacity: 0.8;">@teamscaglia</div>
+                    </div>
+                </a>
+            </div>
             <div class="user-info">
-                <div>
+                <div style="text-align: right;">
                     <div class="user-name" id="userNameDisplay"></div>
-                    <small style="opacity: 0.7;" id="userRoleDisplay"></small>
+                    <small style="opacity: 0.7; display: block; font-size: 12px;" id="userRoleDisplay"></small>
                 </div>
-                <div style="display: flex; gap: 15px; align-items: center;">
-                    <button class="btn-logout" onclick="logout()">Salir</button>
-                </div>
+                <div style="width: 1px; height: 30px; background: rgba(255, 255, 255, 0.2);"></div>
+                <button class="btn-theme-toggle" id="themeToggleBtn" onclick="toggleThemeManual()" title="Cambiar tema">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <div style="width: 1px; height: 30px; background: rgba(255, 255, 255, 0.2);"></div>
+                <button class="btn-logout" onclick="logout()">🚪 Salir</button>
             </div>
         </div>
     </header>
@@ -1022,7 +1120,7 @@
 
                     <div class="dashboard-header">
                         <h2>Tus Beneficios</h2>
-                        <p>Creá cupones y disfrutá descuentos exclusivos del Team Scaglia</p>
+                        <p>Gracias por confiar en nosotros. Queremos acompañarte también después de tu operación inmobiliaria con descuentos y beneficios exclusivos. Creá cupones, canjéalos y disfrutalos.</p>
                     </div>
 
                     <div class="cupones-grid" id="cuponesGrid">
@@ -1263,7 +1361,7 @@
                 { id: '3', nombre: 'Wilson Tobal', email: 'info@wilsontobal.com', descuento: 15, descripcion: 'Interiorismo 15% precio de lista', url: 'https://wilsontobal.com', icono: '🏠', color: '#8b7355', banner: '/image/banner-wilson-tobal.png', tyc: 'Aplica a proyectos de interiorismo. Requiere presupuesto previo. Válido 30 días. No acumulable con otras promociones. Consultar disponibilidad de tiempos.', activo: true },
                 { id: '4', nombre: 'Anna Rosatti', email: 'info@annarosatti.com', descuento: null, descripcion: 'Ropa de diseño (descuento a confirmar)', url: 'https://annarosatti.com', icono: '👗', color: '#ff69b4', banner: '/image/banner-anna-rossatti.png', tyc: 'Descuento a confirmar con la marca. Válido en colecciones seleccionadas. Consultar condiciones específicas con el equipo de Anna Rosatti.', activo: true },
                 { id: '5', nombre: 'Almacén 1249', email: 'info@almacen1249.com', descuento: 10, descripcion: 'Picadas premium 10%', url: 'https://almacen1249.com.ar', icono: '🍽️', color: '#d4af37', banner: '/image/banner-almacen.png', tyc: 'Descuento aplicable a picadas premium. Pedido mínimo requerido. Válido 30 días. Consultar disponibilidad y formas de entrega.', activo: true },
-                { id: '6', nombre: 'Mul nordelta', email: 'info@mulnordelta.com', descuento: 15, descripcion: 'Spa capilar 15% descuento', url: 'https://mulnordelta.com.ar', icono: '💇', color: '#ff6b9d', banner: '/image/banner-mul.png', tyc: 'Descuento en tratamientos de spa capilar. Requiere turno previo. Válido 30 días. No acumulable. Consultar promociones vigentes.', activo: true },
+                { id: '6', nombre: 'Mul nordelta', email: 'info@mulnordelta.com', descuento: 15, descripcion: 'Spa capilar Asiático', url: 'https://www.instagram.com/mul.nordelta/', icono: '💇', color: '#ff6b9d', banner: '/image/banner-mul.png', tyc: '💰 DESCUENTO\n15% de descuento sobre el valor vigente de los tratamientos en la sede Nordelta de MUL Spa Capilar & Facial o la compra de Gift Card. Beneficio no acumulable con otras promociones o descuentos vigentes.\n\n🎫 VALIDEZ DEL CUPÓN\nVálido por 30 días corridos desde su emisión. Un único uso por persona por mes. El límite se renueva el 1 de cada mes.\n\n📅 VIGENCIA\nBeneficio permanente, vigente hasta nuevo aviso.\n\n🚫 EXCEPCIONES\nSin excepciones. Aplica sobre todos los tratamientos ofrecidos en Nordelta, incluyendo Gift Card.\n\n💵 TOPE DE REINTEGRO\nSin límite máximo de reintegro mensual ni anual.\n\n🔄 CÓMO CANJEAR\n1. Presenta el cupón al reservar (presencial, WhatsApp, teléfono o medios que la empresa acepte)\n2. Confirma disponibilidad\n3. Asiste a tu cita\n\n⚠️ TÉRMINOS IMPORTANTES\n- Válido únicamente con presentación del cupón\n- Sujeto a disponibilidad y políticas de cancelación de la sede\n- No canjeable por dinero\n- Aceptar estas condiciones implica conocer y estar de acuerdo con las políticas vigentes de MUL\n\n📞 CONTACTO\nWhatsApp/Teléfono: +54 9 11 5114-7581\nInstagram: https://www.instagram.com/mul.nordelta/\nHorarios: A confirmar con MUL', activo: true },
                 { id: '7', nombre: 'Cerantola', email: 'info@cerantola.com', descuento: null, descripcion: 'Aberturas (descuento a confirmar)', url: 'https://cerantola.com.ar', icono: '🪟', color: '#6b5b4f', banner: '/image/banner-cerantola.png', tyc: 'Descuento a confirmar. Aplica en línea de aberturas seleccionadas. Requiere presupuesto. Válido 30 días.', activo: true },
             ],
             clientes: [
@@ -1364,7 +1462,7 @@
         function showDashboardCliente() {
             document.getElementById('header').style.display = 'block';
             document.getElementById('userNameDisplay').textContent = appState.usuarioActual.nombre;
-            document.getElementById('userRoleDisplay').textContent = 'Cliente';
+            document.getElementById('userRoleDisplay').textContent = '';
 
             const cliente = appState.clientes.find(c => c.id === appState.usuarioActual.clienteId);
 
@@ -1386,7 +1484,7 @@
                             <div id="alertContainer"></div>
                             <div class="dashboard-header">
                                 <h2>Tus Beneficios</h2>
-                                <p>Creá cupones y disfrutá descuentos exclusivos del Team Scaglia</p>
+                                <p>Gracias por confiar en nosotros. Queremos acompañarte también después de tu operación inmobiliaria con descuentos y beneficios exclusivos. Creá cupones, canjéalos y disfrutalos.</p>
                             </div>
                             <div class="cupones-grid" id="cuponesGrid">
                                 <!-- Se llena dinámicamente -->
@@ -1433,7 +1531,7 @@
         function showDashboardAgente() {
             document.getElementById('header').style.display = 'block';
             document.getElementById('userNameDisplay').textContent = appState.usuarioActual.nombre;
-            document.getElementById('userRoleDisplay').textContent = 'Agente';
+            document.getElementById('userRoleDisplay').textContent = '';
 
             // Limpiar inputs
             document.getElementById('loginEmail').value = '';
@@ -1466,7 +1564,7 @@
         function showDashboardAdmin() {
             document.getElementById('header').style.display = 'block';
             document.getElementById('userNameDisplay').textContent = appState.usuarioActual.nombre;
-            document.getElementById('userRoleDisplay').textContent = 'Admin';
+            document.getElementById('userRoleDisplay').textContent = '';
 
             // Limpiar inputs
             document.getElementById('loginEmail').value = '';
@@ -1698,6 +1796,28 @@
         }
 
         function crearCupon(prestadorId, prestadorNombre) {
+            const clienteId = appState.usuarioActual.clienteId;
+            
+            // Obtener primer día del mes actual
+            const hoy = new Date();
+            const primerDiaDelMes = new Date(hoy.getFullYear(), hoy.getMonth(), 1);
+            
+            // Buscar si ya existe un cupón activo de este cliente con este prestador en el mes actual
+            const cuponExistenteDelMes = appState.cupones.find(c => {
+                const esDelCliente = c.clienteId === clienteId;
+                const esDelPrestador = c.prestadorId === prestadorId;
+                const esDelMesActual = new Date(c.creadoEn) >= primerDiaDelMes;
+                const estaActivo = c.estado === 'activo' || (c.usadoEn === null && new Date(c.expirado) > hoy);
+                
+                return esDelCliente && esDelPrestador && esDelMesActual && estaActivo;
+            });
+            
+            // Si ya existe un cupón activo este mes, bloquear
+            if (cuponExistenteDelMes) {
+                showAlert('vistaDashboardCliente', `❌ Ya tenés un cupón activo de ${prestadorNombre} este mes. Vuelve el próximo 1 de mes para solicitar uno nuevo.`, 'error');
+                return;
+            }
+
             // Generar código único
             const codigo = `SCGL-${prestadorNombre.substring(0, 3).toUpperCase()}-${Math.random().toString(36).substr(2, 6).toUpperCase()}`;
 
@@ -2343,7 +2463,20 @@
         // ==================== INICIALIZACIÓN ====================
 
         function applyTheme() {
-            // Obtener hora actual en Argentina (UTC-3)
+            // Si el usuario ha forzado un tema manualmente, respetarlo
+            const forceTheme = localStorage.getItem('forceTheme');
+            if (forceTheme) {
+                if (forceTheme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                    document.getElementById('themeIcon').textContent = '☀️';
+                } else {
+                    document.body.classList.remove('dark-mode');
+                    document.getElementById('themeIcon').textContent = '🌙';
+                }
+                return;
+            }
+
+            // Si no hay fuerza de tema, usar hora automática
             const now = new Date();
             const argentinaTime = new Date(now.toLocaleString('en-US', { timeZone: 'America/Argentina/Buenos_Aires' }));
             const hora = argentinaTime.getHours();
@@ -2351,8 +2484,26 @@
             // Modo oscuro de 18:00 (6PM) a 06:00 (6AM)
             if (hora >= 18 || hora < 6) {
                 document.body.classList.add('dark-mode');
+                document.getElementById('themeIcon').textContent = '☀️';
             } else {
                 document.body.classList.remove('dark-mode');
+                document.getElementById('themeIcon').textContent = '🌙';
+            }
+        }
+
+        function toggleThemeManual() {
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            if (isDarkMode) {
+                // Cambiar a modo claro
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('forceTheme', 'light');
+                document.getElementById('themeIcon').textContent = '🌙';
+            } else {
+                // Cambiar a modo oscuro
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('forceTheme', 'dark');
+                document.getElementById('themeIcon').textContent = '☀️';
             }
         }
 
